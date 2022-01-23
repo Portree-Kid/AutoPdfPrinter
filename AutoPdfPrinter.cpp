@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     LoadString(h, 505, saveAsDlgTitle, ARRAYSIZE(saveAsDlgTitle));
     FreeLibrary(h);
 
-    std::wcout << printDlgTitle << "\t" << saveAsDlgTitle << std::endl;
+    std::wcout << "AutoPdfPrinter 0.1 Searching : "  << printDlgTitle << " and " << saveAsDlgTitle << std::endl;
 
     int wait = atoi(argv[1]);
     HWND hwnd = nullptr;
