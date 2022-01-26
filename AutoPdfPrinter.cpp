@@ -83,7 +83,8 @@ int main(int argc, char* argv[])
     LoadString(h, 505, saveAsDlgTitle, ARRAYSIZE(saveAsDlgTitle));
     FreeLibrary(h);
 
-    std::wcout << "AutoPdfPrinter 0.2 Searching : "  << printDlgTitle << " and " << saveAsDlgTitle << std::endl;
+    std::wcout << "AutoPdfPrinter 0.3" << std::endl;
+    std::wcout << "Searching for " << printDlgTitle << " for " << argv[1] << " seconds "  << std::endl;
 
     HWND hwnd = nullptr;
 
@@ -96,13 +97,14 @@ int main(int argc, char* argv[])
         std::cout << "Print Dialog not found : " << hwnd << std::endl;
         return 2;
     }
-    std::cout << "Print : " << hwnd << std::endl;
-
+    std::cout << "Print Window : " << hwnd << std::endl;
+    Sleep(500);
     SetActiveWindow(hwnd);
     SetForegroundWindow(hwnd);
     sendEnter();
     HWND saveHwnd = nullptr;
 
+    std::wcout << "Searching for " << saveAsDlgTitle << " for " << argv[2] << " seconds " << std::endl;
     wait = atoi(argv[2]);
     while (--wait > 0 && !(saveHwnd = FindWindowW(0, saveAsDlgTitle))) {
         Sleep(1000);
@@ -113,6 +115,7 @@ int main(int argc, char* argv[])
         std::wcout << "File Save Dialog not found : " << saveHwnd << std::endl;
         return 2;
     }
+    Sleep(500);
     SetActiveWindow(saveHwnd);
     SetForegroundWindow(saveHwnd);
     std::cout << "Sending " << argv[3] << " to " << saveHwnd << strlen(argv[3]) << std::endl;
